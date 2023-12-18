@@ -1,0 +1,103 @@
+1.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ touch file.txt
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod 744 file.txt
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ ls -l
+        total 0
+        -rwxr--r-- 1 Mane 197121 0 Dec  7 20:56 file.txt
+
+
+2.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod a+x file.txt
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ ls -l
+        total 0
+        -rwxr-xr-x 1 Mane 197121 0 Dec  7 21:06 file.txt
+
+3. 
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod go-x file.txt
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ ls -l
+        total 0
+        -rwxr--r-- 1 Mane 197121 0 Dec  7 21:08 file.txt
+
+
+4.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod 600 file.txt
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod u+rw,go-rwx file.txt
+    
+
+5. 
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ mkdir dir
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod 666 dir
+    $ touch dir/file.txt
+    // չկա բավարար թույլատրությու ֆայլ ստեղծելու համար
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod 775 dir
+    $ touch dir/file.txt
+    
+
+6.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ touch dir/file1.txt dir/file2.txt
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod 766 dir/*
+
+
+7. 
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ umask 0026
+
+8.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ umask 0022
+    // վերադարձ նախնական արժեքին
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ umask 0066
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ umask 0022
+    // վերադարձ նախնական արժեքին
+
+
+9.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ cat > list.sh
+        #!/bin/bash
+        ls ~/Desktop/lab4
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod 0344 list.sh
+    // չկա բավարար թույլատրությու սկրիպտը աշխատացնելու համար
+    
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ chmod +x list.sh
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ ./list.sh
+        dir  file.txt  list.sh
+
+
+10. 
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ mv list.sh ~/bin
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab4
+    $ export PATH=~/bin:"$PATH"

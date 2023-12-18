@@ -1,0 +1,214 @@
+1.
+    // 1.sh
+    #!/bin/bash
+
+    read -p "Enter a number: " num
+
+    if [[ $num -gt 0 ]]; then
+        echo "The number is positive."
+    elif [[ $num -lt 0 ]]; then
+        echo "The number is negative."
+    else
+        echo "The number is 0."
+    fi
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ ./1.sh
+        Enter a number: 4
+        The number is positive.
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ ./1.sh
+        Enter a number: -2
+        The number is negative.
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ ./1.sh
+        Enter a number: 0
+        The number is 0.
+
+
+2.
+    // 2.sh
+    #!/bin/bash
+
+    read -p "Enter a number: " num
+
+    if ((num > 0)); then
+        echo "The number is positive."
+    elif ((num < 0)); then
+        echo "The number is negative."
+    else
+        echo "The number is 0."
+    fi
+
+3.
+    // 3.sh
+    #!/bin/bash
+
+    read -p "Enter a number: " num
+
+    if ((num % 2 == 0)) && ((num % 3 == 0)) && ((num % 5 == 0)); then
+        echo "The number is a multiple of 2, 3, and 5."
+    else
+        echo "The number is not a multiple of 2, 3, and 5."
+    fi
+
+
+4. 
+    // 4.sh
+    #!/bin/bash
+
+    read -p "Enter a number: " num
+
+    if ((num % 2 == 0)) || ((num % 3 == 0)) || ((num % 5 == 0)); then
+        echo "The number is a multiple of 2, 3, or 5."
+    else
+        echo "The number is not a multiple of 2, 3, or 5."
+    fi
+
+
+5.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ touch new_file.txt && chmod +x new_file.txt
+
+
+6.
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ [ -d "dir" ] || mkdir "dir"
+
+
+7.
+    // 7.sh
+    #!/bin/bash
+
+    invalid_input () {
+        if [[ $1 =~ ^-?[[:digit:]]+$ ]]; then
+            echo "$1 is an integer."
+        else
+            echo "$1 is not an integer."
+        fi
+
+    }
+
+    read -p "Enter a number: " num
+    read -p "Enter the lower limit of the range: " lower
+    read -p "Enter the upper limit of the range: " upper
+
+    invalid_input $num
+    invalid_input $lower
+    invalid_input $upper
+
+
+    if ((num >= lower)) && ((num <= upper)); then
+        echo "The number is in the specified range."
+    else
+        echo "The number is outside the specified range."
+    fi
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ ./7.sh
+        Enter a number: 30
+        Enter the lower limit of the range: 8
+        Enter the upper limit of the range: 71
+        30 is an integer.
+        8 is an integer.
+        71 is an integer.
+        The number is in the specified range.
+
+
+8.
+    // 8.sh
+    #!/bin/bash
+
+    read -s -p "Enter a word: " secret
+
+    if [[ $secret == "Secret" ]]; then
+        echo -e "\nYou entered the secret word."
+    else
+        echo -e "\nIncorrect word."
+    fi
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ ./8.sh
+        Enter a word:
+        You entered the secret word.
+
+
+9.
+    // 9.sh
+    #!/bin/bash
+
+    read -p "Enter a file name: " filename
+
+    # Validate the filename
+    # if [[ "$filename" =~ ^[a-z0-9]*$ ]]; then
+
+    if [[ "$filename" =~ ^[a-zA-Z0-9_.\-\]*$ ]]; then
+        # Check if the file exists
+        if [ -e "$filename" ]; then
+            echo "The file '$filename' already exists."
+        else
+            touch "$filename"
+            echo "The file '$filename' has been created."
+        fi
+    else
+        echo "Invalid filename. It may contain letters, numbers, -, ., _ symbols."
+    fi
+
+
+10.
+    // 10.sh
+    #!/bin/bash
+
+    invalid_input () {
+        if [[ $1 =~ ^-?[[:digit:]]+$ ]]; then
+            echo "$1 is an integer."
+        else
+            echo "$1 is not an integer."
+            exit 1 
+        fi
+
+        if [[ $2 =~ ^[-+\*/**]$ ]]; then
+            echo "$2 is a right operator."
+        else
+            echo "$2 is not a right operator."
+            exit 1
+        fi
+
+        if [[ $3 =~ ^-?[[:digit:]]+$ ]]; then
+            echo "$3 is an integer."
+        else
+            echo "$3 is not an integer."
+            exit 1
+        fi
+
+        if [[ $4 ]]; then
+            echo "Too many variables."
+            exit 1
+        fi
+    }
+
+    answer(){
+
+        result=$(($1 $2 $3))
+        echo "Result: $result"
+
+    }
+
+    read -p "Enter: " 
+    # ներմուծված տվյալները պահվում են REPLY փոփոխականի մեջ
+
+    echo $REPLY
+    invalid_input $REPLY
+
+    answer $REPLY
+
+    Mane@DESKTOP-GPU6I1O MINGW64 ~/Desktop/lab6
+    $ ./10.sh
+        Enter: 5 + 101
+        5 + 101
+        5 is an integer.
+        + is a right operator.
+        101 is an integer.
+        Result: 106

@@ -1,0 +1,40 @@
+1.
+mkdir lab1
+cd lab1
+touch file.txt file1.txt file2.txt file3.txt
+mkdir dir1 dir2
+
+2.
+ls *.txt
+թվարկում է բոլոր ֆայլերը որոնք ավարտվում են .txt սիմվոլներով
+ls * .txt
+թվարկում է ընթացիկ գրացուցակի բոլոր ֆայլերը, բացատներով անջատած, այնուհետև ցուցակագրում է .txt ընդլայնմամբ ֆայլերը արմատային գրացուցակում //հավանաբար չի կարող ընթերցել վերջին հրամանը
+
+3․
+ls f???.txt
+
+4.
+ls file[0-9].txt
+
+5.
+ls *[12:lower:].txt
+or
+ls *[a-z12].txt
+
+6.
+cp /etc/passwd lab1
+
+7.
+mv passwd new
+mv new dir1
+mv dir1/new dir2
+
+8.
+mv dir2 dir3
+mv dir3 dir1
+
+9.
+mv dir1/dir3/new .
+
+10.
+rm -rf lab1

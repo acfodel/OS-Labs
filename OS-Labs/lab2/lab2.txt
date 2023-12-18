@@ -1,0 +1,46 @@
+1.
+cat > file1
+Թույլ է տալիս մուտքագրել տվյալները ֆայլում, ստեղծում է տվյալ անվանումով ֆայլ, եթե գոյություն չունի
+cat file1
+արտածում է ֆայլի տվյալները ըստ STDOUT-ի
+cat < file1
+կատարում է input redirection, այլ կերպ ասած ֆայլի պարունակությունը վերածում է cat-ի մուտքգրման, միայն դրանից հետո կատարում standart output
+2.
+touch file1.txt file2.txt file3.txt
+echo "11111" > file1.txt
+echo "22222" > file2.txt
+echo "33333" > file3.txt
+cat file1.txt file2.txt file3.txt > final.txt
+////output
+cat final.txt
+11111
+22222
+33333
+
+3.
+ls -l /home/student | grep -c '^-' 
+
+4.
+cat file1.txt file2.txt file3.txt | sort > sorted_files.txt
+
+5.
+ls -l /home/student | sort -r -k5 | head -n 15
+
+6.
+ls -l > ls.txt //not working in git bash
+
+7.
+:
+echo secret text | tr abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM
+to decode:
+echo 'output of coding' | tr abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM
+
+8.
+echo "Student’s home directory is {home_dir}." | sed "s/{home_dir}/$(pwd | sed 's/\//\\\//g')/g" > home.txt
+
+9.
+echo -e "Line 1\nLine 2\nLine 3\nLine 4\nLine 5" > file4.txt
+tail -n +2 file4.txt | head -n 3
+
+10.
+sed '2,4d' -i file4.txt

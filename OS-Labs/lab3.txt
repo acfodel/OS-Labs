@@ -1,0 +1,102 @@
+1.
+ls -l /etc | grep -E '\s[0-9]'
+
+2.
+echo -e "Hello\nWorld\nYellow\nMango\nBlue\nTable\nSolo\nGallo\nPiano\nHello" > customfile.txt
+chmod 644 customfile.txt
+grep -E '^[a-zA-Z]{5}lo$' customfile.txt
+
+3.
+1) grep -h '[A-Z]' dirlist*.txt - Ստանում է այն տողերը, որոնք պարունակում են մեծատառ։
+2)
+3)grep -h '^[A-Z]' dirlist*.txt - Ստանում է այն տողերը, որոնք սկսվում են մեծատառով։
+4)grep -h '[^A-Z]' dirlist*.txt - Ստանում է այն տողերը, որոնք չեն պարունակում մեծատառ։
+
+4.
+grep '^\(bz\|zip\)' dirlist-bin.txt dirlist-sbin.txt
+
+5.
+1.grep -Eh '^(bz|gz|zip)' dirlist*.txt
+ելնելով փակագծի և ^ նշանի տեղադրությունից, այն վերաբերում է փակագծի բոլոր անդամներին։ Այսինքն փնտրելու է այն տողերը որոնք սկսվում են այդ բառերով։
+2․grep -Eh '^bz|gz|zip' dirlist*.txt
+Այս հրամանի դեպքում ^ նշանը վերաբերվում է միայն առաջին բառին։ Փնտրվում է տողեր որոնք սկսվում են առաջին բառով, կամ պարունակում մյուս երկուսը։
+
+6.
+ստեղծենք script.sh ֆայլ , հետևյալ պարունակությամբ
+cat script.sh
+"#!/bin/bash
+
+link="test@test.com"
+
+if curl --output /dev/null --silent --head --fail "$link"; then
+  echo "The link is valid."
+else
+  echo "The link is not valid or unreachable."
+fi"
+
+աշխատացնելու համար
+$ ./script.sh
+The link is not valid or unreachable.
+
+7.
+ստեղծենք script.sh ֆայլ , հետևյալ պարունակությամբ
+cat script.sh
+"#!/bin/bash
+
+octet (0-255)
+is_valid_octet() {
+    local octet=$1
+    [[ $octet =~ ^[0-9]+$ ]] && ((octet >= 0 && octet <= 255))
+}
+
+is_valid_ipv4() {
+    local ipv4=$1
+    IFS='.' read -r -a octets <<< "$ipv4"
+    
+    [[ ${#octets[@]} -eq 4 ]] || return 1
+
+    for octet in "${octets[@]}"; do
+        is_valid_octet "$octet" || return 1
+    done
+    
+    return 0
+}
+
+ipv4_address="192.168.0.1"
+
+if is_valid_ipv4 "$ipv4_address"; then
+    echo "The IPv4 address is valid."
+else
+    echo "The IPv4 address is not valid."
+fi
+"
+աշխատացնելու համար
+
+$ ./script.sh
+The IPv4 address is valid.
+տվյալ դեպում հասցեն վավերացված է
+
+ստուգենք գոյություն չունեցող հասցեի վրա
+օր․՝ipv4_address="256.168.0.1"
+
+$ ./script.sh
+The IPv4 address is not valid.
+
+8.
+Ստեղծենք ֆայլ հետևյալ պարունակությամբ
+$ cat palindromes.txt
+Level
+lvl
+lllll
+vvv
+
+կիրառելով հետևյալ հրամանը ստանանք անհրաժեշտ արժեքը
+$ grep -E '^.{5}$' palindromes.txt
+Level
+lllll
+
+9․
+date -d "01/02/1970" +"%Y-%m-%d"
+
+10․
+$ echo "0xx 12-34-56" | sed -E 's/0xx ([0-9]{2})-([0-9]{2})-([0-9]{2})/(\0) \1-\2-\3/'
